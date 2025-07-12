@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_course_july/profile_page.dart';
+import 'package:flutter_course_july/training%20files/profile_page.dart';
 
 //stateful
 class NayraHomePage extends StatefulWidget {
