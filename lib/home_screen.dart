@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_course_july/bottom_nav_screens/explore_page.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
@@ -169,6 +170,11 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {
               _selectedIndex = value;
             });
+            //if statement
+            if(_selectedIndex == 1){
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context)=> ExplorePage()));
+            }
           },
           items: [
             BottomNavigationBarItem(

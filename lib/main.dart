@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'training files/bottom_nav_bar_example.dart';
 import 'splash_screen.dart';
 
 
