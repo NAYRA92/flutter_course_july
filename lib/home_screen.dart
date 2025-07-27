@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_course_july/bottom_nav_screens/cart_page.dart';
 import 'package:flutter_course_july/bottom_nav_screens/explore_page.dart';
+import 'package:flutter_course_july/bottom_nav_screens/fav_page.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
@@ -174,6 +176,14 @@ class _HomeScreenState extends State<HomeScreen> {
             if(_selectedIndex == 1){
               Navigator.push(context, 
               MaterialPageRoute(builder: (context)=> ExplorePage()));
+            }
+            else if(_selectedIndex == 2){
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context)=> CartPage()));
+            }
+            else if(_selectedIndex == 3){
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (context)=> FavPage()));
             }
           },
           items: [
