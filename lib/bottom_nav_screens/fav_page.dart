@@ -40,7 +40,7 @@ class _FavPageState extends State<FavPage> {
                   children: [
                     Expanded(
                       child: app_items_card(cartItemsImages[index],
-                          cartItemsTitle[index], "7pcs, Pricing", "4.99"),
+                          cartItemsTitle[index], "7pcs, Pricing", "4.99",(){} ),
                     ),
                     IconButton(
                         onPressed: () {
@@ -68,4 +68,5 @@ class _FavPageState extends State<FavPage> {
       ),
     );
   }
+
 }

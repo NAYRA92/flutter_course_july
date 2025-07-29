@@ -29,8 +29,11 @@ TextStyle app_text_style() {
       fontFamily: "Gilroy");
 }
 
-Widget app_items_card(
-    String image_url, String item_name, String item_count, String item_price) {
+//item card for the app
+
+  Widget app_items_card(
+    String image_url, String item_name, String item_count, String item_price,
+    Function() fun) {
   return Container(
     width: 180,
     padding: const EdgeInsets.all(5),
@@ -91,7 +94,7 @@ Widget app_items_card(
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: fun,
                   icon: Icon(
                     Icons.add,
                     color: Colors.white,

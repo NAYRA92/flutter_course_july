@@ -40,7 +40,7 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     Expanded(
                       child: app_items_card(cartItemsImages[index],
-                          cartItemsTitle[index], "7pcs, Pricing", "4.99"),
+                          cartItemsTitle[index], "7pcs, Pricing", "4.99", (){}),
                     ),
                     IconButton(
                         onPressed: () {
@@ -68,6 +68,7 @@ class _CartPageState extends State<CartPage> {
       ),
     );
   }
+
 }
 
 //example of a simple for loop

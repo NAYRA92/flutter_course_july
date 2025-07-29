@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  int cartCount = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -82,11 +83,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     app_items_card("images/banana.jpg", "Organic Bananas",
-                        "7pcs, Pricing", "4.99"),
-                    app_items_card("images/apple.jpg", "Fresh Apple",
-                        "1kg, Pricing", "6.00"),
-                    app_items_card("images/apple.jpg", "Fresh Apple",
-                        "1kg, Pricing", "6.00"),
+                        "7pcs, Pricing", "4.99",(){
+                      
+                    showModalBottomSheet(context: context, 
+                    builder: (BuildContext context){
+                      return StatefulBuilder(
+                        builder: (context, setState) {
+                          return Container(
+                            height: 250,
+                            width: double.infinity,
+                            margin: EdgeInsets.all(10),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  Text("Item Added!",
+                                  style: app_text_style().copyWith(
+                                    color: Colors.black,
+                                  ),),
+                          
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(child: app_ele_button("-", (){
+                                        if(cartCount > 1){
+                                          setState(() {
+                                            cartCount--;
+                                          });
+                                        }
+                                      })),
+                                      Expanded(child: 
+                                      Center(
+                                        child: Text("$cartCount",  style: app_text_style().copyWith(
+                                                                        color: Colors.black,
+                                                                        fontSize: 18
+                                                                      ),),
+                                      )),
+                                      Expanded(child: app_ele_button("+", (){
+                                        if(cartCount < 10){
+                                          setState(() {
+                                            cartCount++;
+                                          });
+                                        }
+                                      }))
+                                    ],
+                                  )
+                                ],
+                              )),
+                          );
+                        }
+                      );
+                    });
+                  }, ),
+                  
+                 
                   ],
                 ),
               ),
@@ -123,12 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    app_items_card("images/banana.jpg", "Organic Bananas",
-                        "7pcs, Pricing", "4.99"),
-                    app_items_card("images/apple.jpg", "Fresh Apple",
-                        "1kg, Pricing", "6.00"),
-                    app_items_card("images/apple.jpg", "Fresh Apple",
-                        "1kg, Pricing", "6.00"),
+                   
                   ],
                 ),
               ),
@@ -199,4 +243,5 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
     );
   }
+
 }
