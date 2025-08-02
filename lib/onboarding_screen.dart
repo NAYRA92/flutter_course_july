@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course_july/constant.dart';
 
+import 'bottom_nav_screens/login_page.dart';
 import 'home_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SizedBox(height: 20,),
               app_ele_button("Get Started", (){
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => HomeScreen()));
+                MaterialPageRoute(builder: (context) => LoginPage()));
               }),
               SizedBox(height: 50,),
             ],
