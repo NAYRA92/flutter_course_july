@@ -85,54 +85,74 @@ class _HomeScreenState extends State<HomeScreen> {
                     app_items_card("images/banana.jpg", "Organic Bananas",
                         "7pcs, Pricing", "4.99",(){
                       
-                    showModalBottomSheet(context: context, 
-                    builder: (BuildContext context){
-                      return StatefulBuilder(
-                        builder: (context, setState) {
-                          return Container(
-                            height: 250,
-                            width: double.infinity,
-                            margin: EdgeInsets.all(10),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Text("Item Added!",
-                                  style: app_text_style().copyWith(
-                                    color: Colors.black,
-                                  ),),
-                          
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Expanded(child: app_ele_button("-", (){
-                                        if(cartCount > 1){
-                                          setState(() {
-                                            cartCount--;
-                                          });
-                                        }
-                                      })),
-                                      Expanded(child: 
-                                      Center(
-                                        child: Text("$cartCount",  style: app_text_style().copyWith(
-                                                                        color: Colors.black,
-                                                                        fontSize: 18
-                                                                      ),),
-                                      )),
-                                      Expanded(child: app_ele_button("+", (){
-                                        if(cartCount < 10){
-                                          setState(() {
-                                            cartCount++;
-                                          });
-                                        }
-                                      }))
-                                    ],
-                                  )
-                                ],
-                              )),
-                          );
-                        }
-                      );
-                    });
+                    // showModalBottomSheet(context: context, 
+                    // builder: (BuildContext context){
+                    //   return StatefulBuilder(
+                    //     builder: (context, setState) {
+                    //       return Container(
+                    //         // height: 250,
+                    //         width: double.infinity,
+                    //         margin: EdgeInsets.all(10),
+                    //         child: Center(
+                    //           child: Column(
+                    //             children: [
+                    //               Row(
+                    //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //                 children: [
+                    //                   Text("Checkout", style: app_text_style().copyWith(
+                    //                     color: Colors.black,
+                    //                     fontSize: 24
+                    //                   ),),
+                    //                   IconButton(onPressed: (){
+                    //                     Navigator.pop(context);
+                    //                   }, icon: Icon(Icons.close, size: 24,))
+                    //                 ],
+                    //               ),
+                    //               Divider(
+                    //                 color: greyColor,
+                    //               ),
+
+                    //               //delivery section
+                    //               bottomSheetItems(context, "Delivery", "Select Method"),
+                    //                Divider(
+                    //                 color: greyColor,
+                    //               ),
+                    //               //payment section
+                    //               bottomSheetItems(context, "Payment", "Select Card"),
+                    //               Divider(
+                    //                 color: greyColor,
+                    //               ),
+                    //               //Promo section
+                    //               bottomSheetItems(context, "Promo Code", "Pick Discount"),
+                    //               Divider(
+                    //                 color: greyColor,
+                    //               ),
+                    //               //Total cost section
+                    //               bottomSheetItems(context, "Total Cost", "\$41.99"),
+                    //               Divider(
+                    //                 color: greyColor,
+                    //               ),
+                    //               //Terms and conditions section
+                    //               Text("By placing an order you agree to our Terms And Conditions",
+                    //               style: app_text_style().copyWith(
+                    //                 color: greyTextColor,
+                    //                 fontSize: 14
+                    //               ),),
+                    //               SizedBox(
+                    //                 height: 20,
+                    //               ),
+                    //               //Place Order btton
+                    //               app_ele_button("Place Order", (){
+
+                    //               })
+                    //               //---
+                    //               // addCartItemsCount(setState)
+                    //             ],
+                    //           )),
+                    //       );
+                    //     }
+                    //   );
+                    // });
                   }, ),
                   
                  
@@ -181,32 +201,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      //water drop nav bar
-      // bottomNavigationBar: WaterDropNavBar(
-      //   barItems: [
-      //     BarItem(
-      //       filledIcon: Icons.shop,
-      //       outlinedIcon: Icons.shop_outlined
-            
-      //     ),
-      //     BarItem(
-      //       filledIcon: Icons.shopping_cart,
-      //       outlinedIcon: Icons.shopping_cart_outlined
-            
-      //     ),
-      //     BarItem(
-      //       filledIcon: Icons.person,
-      //       outlinedIcon: Icons.person_outlined
-            
-      //     ),
-      //   ], 
-      //   selectedIndex: _selectedIndex, 
-      //   onItemSelected: (value){
-      //     setState(() {
-      //       _selectedIndex = value;
-      //     });
-      //   }),
-
       //bottom nav bar
       bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.black,
@@ -243,5 +237,35 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
     );
   }
+
+  Row addCartItemsCount(StateSetter setState) {
+    return Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(child: app_ele_button("-", (){
+                                      if(cartCount > 1){
+                                        setState(() {
+                                          cartCount--;
+                                        });
+                                      }
+                                    })),
+                                    Expanded(child: 
+                                    Center(
+                                      child: Text("$cartCount",  style: app_text_style().copyWith(
+                                                                      color: Colors.black,
+                                                                      fontSize: 18
+                                                                    ),),
+                                    )),
+                                    Expanded(child: app_ele_button("+", (){
+                                      if(cartCount < 10){
+                                        setState(() {
+                                          cartCount++;
+                                        });
+                                      }
+                                    }))
+                                  ],
+                                );
+  }
+
 
 }

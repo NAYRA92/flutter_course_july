@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'bottom_nav_screens/account_page.dart';
+import 'bottom_nav_screens/cart_page.dart';
+import 'bottom_nav_screens/fav_page.dart';
+import 'order_accepted_screen.dart';
 import 'training files/bottom_nav_bar_example.dart';
 import 'splash_screen.dart';
 
@@ -22,7 +26,8 @@ class MyApp extends StatelessWidget {
         fontFamily: "Gilroy"
       ),
       
-      home: SplashScreen()
+      home: CartPage()
+      //  SplashScreen()
     );
   }
 }

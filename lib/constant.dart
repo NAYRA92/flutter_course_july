@@ -31,9 +31,8 @@ TextStyle app_text_style() {
 
 //item card for the app
 
-  Widget app_items_card(
-    String image_url, String item_name, String item_count, String item_price,
-    Function() fun) {
+Widget app_items_card(String image_url, String item_name, String item_count,
+    String item_price, Function() fun) {
   return Container(
     width: 180,
     padding: const EdgeInsets.all(5),
@@ -115,5 +114,63 @@ Container myCarouselContainer(String image_url) {
         color: greyColor,
         image:
             DecorationImage(image: AssetImage(image_url), fit: BoxFit.cover)),
+  );
+}
+
+Row userProfileItems(IconData icn, String title) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Row(
+        children: [
+          Icon(icn),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            title,
+            style: app_text_style().copyWith(color: Colors.black, fontSize: 18),
+          ),
+        ],
+      ),
+      IconButton(
+          onPressed: () {
+            // Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_forward_ios,
+            size: 16,
+          ))
+    ],
+  );
+}
+
+Row bottomSheetItems(String title, String subtitle, Function() fun) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(
+        title,
+        style: app_text_style().copyWith(color: greyTextColor, fontSize: 18),
+      ),
+      IconButton(
+          onPressed: fun,
+          icon: Row(
+            children: [
+              Text(
+                subtitle,
+                style: app_text_style()
+                    .copyWith(color: Colors.black, fontSize: 16),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+              )
+            ],
+          ))
+    ],
   );
 }

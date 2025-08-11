@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
+import '../home_screen.dart';
 
 class FavPage extends StatefulWidget {
   const FavPage({super.key});
@@ -10,7 +11,7 @@ class FavPage extends StatefulWidget {
 }
 
 class _FavPageState extends State<FavPage> {
-    List<String> cartItemsTitle = [
+  List<String> cartItemsTitle = [
     "Organic Bananas", //indexed 0
     "Fresh Apples", //indexed 1
   ];
@@ -40,7 +41,61 @@ class _FavPageState extends State<FavPage> {
                   children: [
                     Expanded(
                       child: app_items_card(cartItemsImages[index],
-                          cartItemsTitle[index], "7pcs, Pricing", "4.99",(){} ),
+                          cartItemsTitle[index], "7pcs, Pricing", "4.99", () {
+                        //this is for adding items to cart
+                        //but here an example for the alert dialog
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Center(child: Text("Oops! Order Failed")),
+                                content: SizedBox(
+                                  height: 350,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.close_rounded,
+                                        size: 150,
+                                        color: Colors.red[400],
+                                      ),
+                                      Text("Something went tembly wrong.",
+                                      style: app_text_style().copyWith(
+                                        color: greyTextColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16
+                                      ),),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      
+                                      //Try again button
+                                      app_ele_button("Please Try Again", () {}),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                  
+                                      //Back home button
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomeScreen()));
+                                          },
+                                          child: Text(
+                                            "Back to home",
+                                            style: app_text_style().copyWith(
+                                                color: Colors.black,
+                                                fontSize: 18),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                              );
+                            });
+                      }),
                     ),
                     IconButton(
                         onPressed: () {
@@ -68,5 +123,4 @@ class _FavPageState extends State<FavPage> {
       ),
     );
   }
-
 }

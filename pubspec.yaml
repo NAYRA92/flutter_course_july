@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   water_drop_nav_bar:
   lucide_icons_flutter:
+  lottie:
 
 dev_dependencies:
   flutter_test:
