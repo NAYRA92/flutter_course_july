@@ -8,6 +8,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 import 'constant.dart';
+import 'product_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -84,75 +85,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     app_items_card("images/banana.jpg", "Organic Bananas",
                         "7pcs, Pricing", "4.99",(){
-                      
-                    // showModalBottomSheet(context: context, 
-                    // builder: (BuildContext context){
-                    //   return StatefulBuilder(
-                    //     builder: (context, setState) {
-                    //       return Container(
-                    //         // height: 250,
-                    //         width: double.infinity,
-                    //         margin: EdgeInsets.all(10),
-                    //         child: Center(
-                    //           child: Column(
-                    //             children: [
-                    //               Row(
-                    //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //                 children: [
-                    //                   Text("Checkout", style: app_text_style().copyWith(
-                    //                     color: Colors.black,
-                    //                     fontSize: 24
-                    //                   ),),
-                    //                   IconButton(onPressed: (){
-                    //                     Navigator.pop(context);
-                    //                   }, icon: Icon(Icons.close, size: 24,))
-                    //                 ],
-                    //               ),
-                    //               Divider(
-                    //                 color: greyColor,
-                    //               ),
-
-                    //               //delivery section
-                    //               bottomSheetItems(context, "Delivery", "Select Method"),
-                    //                Divider(
-                    //                 color: greyColor,
-                    //               ),
-                    //               //payment section
-                    //               bottomSheetItems(context, "Payment", "Select Card"),
-                    //               Divider(
-                    //                 color: greyColor,
-                    //               ),
-                    //               //Promo section
-                    //               bottomSheetItems(context, "Promo Code", "Pick Discount"),
-                    //               Divider(
-                    //                 color: greyColor,
-                    //               ),
-                    //               //Total cost section
-                    //               bottomSheetItems(context, "Total Cost", "\$41.99"),
-                    //               Divider(
-                    //                 color: greyColor,
-                    //               ),
-                    //               //Terms and conditions section
-                    //               Text("By placing an order you agree to our Terms And Conditions",
-                    //               style: app_text_style().copyWith(
-                    //                 color: greyTextColor,
-                    //                 fontSize: 14
-                    //               ),),
-                    //               SizedBox(
-                    //                 height: 20,
-                    //               ),
-                    //               //Place Order btton
-                    //               app_ele_button("Place Order", (){
-
-                    //               })
-                    //               //---
-                    //               // addCartItemsCount(setState)
-                    //             ],
-                    //           )),
-                    //       );
-                    //     }
-                    //   );
-                    // });
+                          Navigator.push(context, 
+                          MaterialPageRoute(builder: (context)=> ProductDetailsScreen()));
+                        
                   }, ),
                   
                  

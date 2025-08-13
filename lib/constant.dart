@@ -21,12 +21,18 @@ Widget app_ele_button(String text, Function() fun) {
   );
 }
 
+//white font
 TextStyle app_text_style() {
   return TextStyle(
       color: Colors.white,
       fontSize: 18.0,
-      fontWeight: FontWeight.w600,
-      fontFamily: "Gilroy");
+      fontWeight: FontWeight.w600,);
+}
+
+//black bold font
+TextStyle app_boldText_style() {
+  return TextStyle(
+      fontSize: 28, color: Colors.black, fontWeight: FontWeight.bold);
 }
 
 //item card for the app

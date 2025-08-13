@@ -27,8 +27,9 @@ class MyApp extends StatelessWidget {
         fontFamily: "Gilroy"
       ),
       
-      home: ProductDetailsScreen()
-      //  SplashScreen()
+      home: 
+      //ProductDetailsScreen()
+       SplashScreen()
     );
   }
 }
