@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'bottom_nav_screens/account_page.dart';
 import 'bottom_nav_screens/cart_page.dart';
+import 'bottom_nav_screens/explore_page.dart';
 import 'bottom_nav_screens/fav_page.dart';
 import 'order_accepted_screen.dart';
 import 'product_details_screen.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       
       home: 
       //ProductDetailsScreen()
-       SplashScreen()
+       ExplorePage()
     );
   }
 }

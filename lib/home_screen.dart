@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(
-                height: 280,
+                height: 200,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -131,6 +131,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+
+               //groceries items
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text(
+                      "Groceries",
+                      style: app_text_style().copyWith(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      "See all",
+                      style: app_text_style().copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: primaryColor),
+                    ),
+                    
+                  ],
+                ),
+              ),
+              //gorceries list items
+              SizedBox(
+                      height: 150,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          groceries_list_items("basket", "Mixed Fruit", 0xfff8a44c),
+                          groceries_list_items("basket", "Milk & Chees", 0xff53b175),
+                          groceries_list_items("basket", "Rice", 0xff125be),
+                          
+                        ],
+                      ),
+                    ),
+
+            SizedBox(
+                height: 200,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                   
+                  ],
+                ),
+              ),
+
             ],
           ),
         ),
@@ -171,6 +224,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(LucideIcons.user), label: "Account")
           ]),
     );
+  }
+
+  Container groceries_list_items(
+    String imageUrl,
+    String title,
+    int color_code
+  ) {
+    return Container(
+                          height: 100,
+                          width: 250,
+                          margin: EdgeInsets.only(
+                            top: 25,
+                            bottom: 25,
+                            left: 5,
+                            right: 5),
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Color(color_code).withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Row(children: [
+                            Image.asset("images/$imageUrl.png"),
+                            SizedBox(width: 5,),
+                            Text(title, style: app_boldText_style().copyWith(
+                              fontSize: 18
+                            ),)
+                          ],),
+                        );
   }
 
   Row addCartItemsCount(StateSetter setState) {
