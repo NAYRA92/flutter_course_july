@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_course_july/bottom_nav_screens/login_page.dart';
 
@@ -89,16 +90,36 @@ class _RegisterPageState extends State<RegisterPage> {
               //login button
               SizedBox(
                 height: 50,
-                child: app_ele_button("Register", () {
-                  // print(_password.text);
-                  if (_mobile.text == "779055730" && _password.text == "123") {
+                child: app_ele_button("Register", () async {
+                  try {
+                    await FirebaseFirestore.instance.collection('users').add({
+                      'name': _username.text,
+                      'password': _password.text,
+                      'mobile': _mobile.text,
+                    });
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("User Already Registered!"),
+                      content: Text("User Success Registered!"),
+                      backgroundColor: Colors.green[300],
+                    ));
+                    Navigator.pop(context);
+                  } catch (error) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Error Adding User."),
                       backgroundColor: Colors.red[300],
                     ));
-                  } else {
-                    print("Done Registered!");
                   }
+
+                  ///
+
+                  // if (_mobile.text == "779055730" && _password.text == "123") {
+                  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  //     content: Text("User Already Registered!"),
+                  //     backgroundColor: Colors.red[300],
+                  //   ));
+                  // } else {
+                  //   print("Done Registered!");
+                  // }
+                  ///
                 }),
               ),
 

@@ -38,6 +38,8 @@ dependencies:
   water_drop_nav_bar:
   lucide_icons_flutter:
   lottie:
+  firebase_core:
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
