@@ -20,9 +20,9 @@ import 'splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp( //unerror will appear here, but it will go as soon as you import the needed Firebase packages
-      options: FirebaseOptions(
-          apiKey: "AIzaSyBVU8m9nbQGEMXhCP3CC8RQgMOJU6tx9Z4", //you will find apiKey, appId ... etc indside the google-services.json file that you download from firebase console!
-          appId: "1:632527793225:web:fa87e456dbdbae334fa398",
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyCQYDUn2rw4h1HuNS-cL4EYaW7uIUfoR04", //you will find apiKey, appId ... etc indside the google-services.json file that you download from firebase console!
+          appId: "632527793225",
           messagingSenderId: "sendid",
           projectId: "flutter-course-july",
           storageBucket: "flutter-course-july.firebasestorage.app")); 
@@ -35,10 +35,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'My Awesome Market',
       debugShowCheckedModeBanner: false, //to remove the debug banner
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 245, 236, 154)),
         useMaterial3: true,
         fontFamily: "Gilroy"
       ),

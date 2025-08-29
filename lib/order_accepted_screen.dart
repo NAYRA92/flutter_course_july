@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course_july/bottom_nav_screens/login_page.dart';
 import 'package:flutter_course_july/constant.dart';
 import 'package:flutter_course_july/home_screen.dart';
 import 'package:lottie/lottie.dart';
@@ -41,7 +42,9 @@ class OrderAcceptedScreen extends StatelessWidget {
           //Back home button
           TextButton(onPressed: (){
             Navigator.pushReplacement(context, 
-            MaterialPageRoute(builder: (context) => HomeScreen()));
+            MaterialPageRoute(builder: (context) => HomeScreen(
+              user_name: userName,
+            )));
           }, child: Text("Back to home",
           style: app_text_style().copyWith(
             color: Colors.black,

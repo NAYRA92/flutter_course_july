@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_course_july/bottom_nav_screens/explore_page.dart';
 import 'package:flutter_course_july/bottom_nav_screens/login_page.dart';
 
 import '../constant.dart';
@@ -15,6 +16,59 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _username = TextEditingController();
   TextEditingController _mobile = TextEditingController();
   TextEditingController _password = TextEditingController();
+
+  String mobile = "";
+
+  bool exist = false;
+
+  Future<bool> checkExist(String docID) async {
+    try {
+      await FirebaseFirestore.instance.doc("users/$docID").get().then((doc) {
+        if (doc.exists) {
+          //if document exist
+
+          Map<String, dynamic> data = doc.data()!;
+          // You can then retrieve the value from the Map like this:
+          mobile = data['mobile'];
+          exist = true;
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("User Already Registered!"),
+            backgroundColor: Colors.red[300],
+          ));
+        }
+
+        //if document not exists
+        else if (!doc.exists) {
+          exist = false;
+          setState(() async {
+            await FirebaseFirestore.instance
+                .collection('users')
+                .doc(_mobile.text)
+                .set({
+              'name': _username.text,
+              'password': _password.text,
+              'mobile': _mobile.text,
+            });
+
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("User Success Registered!"),
+              backgroundColor: Colors.green[300],
+            ));
+            Navigator.pop(context);
+          });
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      });
+      return exist;
+    } catch (e) {
+      // If any error
+      print(e);
+      return false;
+    }
+  }
 
   bool secure_code = true;
   @override
@@ -91,35 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 50,
                 child: app_ele_button("Register", () async {
-                  try {
-                    await FirebaseFirestore.instance.collection('users').add({
-                      'name': _username.text,
-                      'password': _password.text,
-                      'mobile': _mobile.text,
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("User Success Registered!"),
-                      backgroundColor: Colors.green[300],
-                    ));
-                    Navigator.pop(context);
-                  } catch (error) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Error Adding User."),
-                      backgroundColor: Colors.red[300],
-                    ));
-                  }
-
-                  ///
-
-                  // if (_mobile.text == "779055730" && _password.text == "123") {
-                  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  //     content: Text("User Already Registered!"),
-                  //     backgroundColor: Colors.red[300],
-                  //   ));
-                  // } else {
-                  //   print("Done Registered!");
-                  // }
-                  ///
+                  checkExist(_mobile.text);
                 }),
               ),
 

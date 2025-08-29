@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course_july/bottom_nav_screens/login_page.dart';
 
 import '../constant.dart';
 import '../home_screen.dart';
@@ -103,7 +104,9 @@ class _CartPageState extends State<CartPage> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                HomeScreen()));
+                                                                HomeScreen(
+                                                                  user_name: userName,
+                                                                )));
                                                   },
                                                   child: Text(
                                                     "Back to home",
