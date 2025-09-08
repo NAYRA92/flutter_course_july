@@ -7,6 +7,7 @@ import 'bottom_nav_screens/cart_page.dart';
 import 'bottom_nav_screens/explore_page.dart';
 import 'bottom_nav_screens/fav_page.dart';
 import 'bottom_nav_screens/register_page.dart';
+import 'curd_product_page.dart';
 import 'order_accepted_screen.dart';
 import 'product_details_screen.dart';
 import 'training files/bottom_nav_bar_example.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
       
       home: 
       //ProductDetailsScreen()
-       LoginPage()
+       CurdProductPage()
     );
   }
 }

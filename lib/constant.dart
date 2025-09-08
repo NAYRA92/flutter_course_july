@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 Color primaryColor = const Color(0xff53B175);
 Color greyColor = const Color(0xffE2E2E2);
 Color greyTextColor = const Color(0xff7C7C7C);
+Color amberColor = const Color.fromARGB(255, 255, 237, 178);
 
 Widget app_ele_button(String text, Function() fun) {
   return Container(
