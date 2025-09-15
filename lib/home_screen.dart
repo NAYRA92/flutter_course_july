@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_course_july/bottom_nav_screens/cart_page.dart';
 import 'package:flutter_course_july/bottom_nav_screens/explore_page.dart';
@@ -31,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 25, bottom: 8, left: 5, right: 5),
+                padding: const EdgeInsets.only(
+                    top: 25, bottom: 8, left: 5, right: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -39,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Welcome, \n ${widget.user_name}!",
                       style: app_boldText_style(),
                     ),
-                
+
                     //for logo and location
                     Column(
                       children: [
@@ -99,23 +101,49 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 280,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    app_items_card(
-                      "images/banana.jpg",
-                      "Organic Bananas",
-                      "7pcs, Pricing",
-                      "4.99",
-                      () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProductDetailsScreen()));
-                      },
-                    ),
-                  ],
-                ),
+                child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("products")
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text("Some error occurred!"),
+                        );
+                      }
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                             var productData = snapshot.data!.docs[index];
+                            return app_items_card(
+                            productData['image'], 
+                              productData['name'], 
+                              productData['unit'], 
+                              productData['price'], 
+                              (){
+                                Navigator.push(context, 
+                                MaterialPageRoute(builder: (context) => ProductDetailsScreen(
+                                  image_url: productData['image'],
+                                  item_name: productData['name'],
+                                  item_unit: productData['unit'],
+                                  item_price: double.parse(productData['price']) ,
+                                     )));
+                              }
+                              );
+                          }
+                            );
+                      }
+                      return Center(
+                        child: Text("No Products Found"),
+                      );
+                    }),
               ),
 
               //best selling items

@@ -3,17 +3,27 @@ import 'package:flutter_course_july/constant.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  final String image_url;
+  final String item_name;
+  final String item_unit;
+  final double item_price;
+  const ProductDetailsScreen(
+      {super.key,
+      required this.image_url,
+      required this.item_name,
+      required this.item_unit,
+      required this.item_price});
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  int cartCount = 1;
+int cartCount = 1;
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       appBar: AppBar(
         actions: [IconButton(onPressed: () {}, icon: Icon(LucideIcons.share))],
@@ -36,7 +46,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     bottomRight: Radius.circular(25),
                   ),
                   image: DecorationImage(
-                    image: AssetImage("images/apple.jpg"),
+                    image: NetworkImage(widget.image_url),
                     opacity: 0.2,
                     fit: BoxFit.cover,
                   ),
@@ -44,8 +54,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Center(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(
-                      "images/apple.jpg",
+                    child: Image.network(
+                      widget.image_url,
                       height: 200,
                       width: 200,
                       fit: BoxFit.cover,
@@ -53,13 +63,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                 ),
               ),
-          
+
               ///
-          
+
               SizedBox(
                 height: 20,
               ),
-          
+
               //product title and details row
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -70,14 +80,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Natural Red Apple",
+                          widget.item_name,
                           style: app_text_style().copyWith(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 24),
                         ),
                         Text(
-                          "1kg, Price",
+                          "${widget.item_unit}, ${widget.item_price} \$",
                           style: app_text_style().copyWith(
                               color: greyTextColor,
                               fontWeight: FontWeight.w600,
@@ -85,22 +95,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         )
                       ],
                     ),
-          
+
                     //fav heart icon
                     IconButton(onPressed: () {}, icon: Icon(LucideIcons.heart))
                   ],
                 ),
               ),
-          
+
               ///
-          
+
               //add or remove item count plus price
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                
                     //add or remove item count
                     Row(
                       children: [
@@ -150,86 +159,98 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             )),
                       ],
                     ),
+
                     ///
-                
-                
-                //price multiplied item count
-                Text("\$14.5",
-                style: app_text_style().copyWith(
-                  fontSize: 28,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold
-                
-                ),)
+
+                    //price multiplied item count
+                    Text(
+                     "\$${widget.item_price * cartCount}",
+                      style: app_text_style().copyWith(
+                          fontSize: 28,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    )
                   ],
                 ),
               ),
+
               ///
-              
+
               Divider(
                 indent: 15,
                 endIndent: 15,
               ),
-              
+
               //product details
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Product Detail",
-                style: app_boldText_style().copyWith(fontSize: 20),
+                child: Text(
+                  "Product Detail",
+                  style: app_boldText_style().copyWith(fontSize: 20),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Product Detail ...",
-                style: app_boldText_style().copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                child: Text(
+                  "Product Detail ...",
+                  style: app_boldText_style()
+                      .copyWith(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
               ),
+
               ///
-              
-               Divider(
+
+              Divider(
                 indent: 15,
                 endIndent: 15,
               ),
-          
+
               //nutritions
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Nutritions",
-                    style: app_boldText_style().copyWith(fontSize: 20,),
+                    Text(
+                      "Nutritions",
+                      style: app_boldText_style().copyWith(
+                        fontSize: 20,
+                      ),
                     ),
-          
                     Row(
                       children: [
-                        Text("100g",
-                        style: TextStyle(
-                          backgroundColor: greyColor
-                        ),),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios))
+                        Text(
+                          "100g",
+                          style: TextStyle(backgroundColor: greyColor),
+                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.arrow_forward_ios))
                       ],
                     )
                   ],
                 ),
               ),
+
               ///
-              
+
               Divider(
                 indent: 15,
                 endIndent: 15,
               ),
-          
+
               //Review stars
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Review",
-                    style: app_boldText_style().copyWith(fontSize: 20,),
+                    Text(
+                      "Review",
+                      style: app_boldText_style().copyWith(
+                        fontSize: 20,
+                      ),
                     ),
-          
                     Row(
                       children: [
                         Icon(Icons.star, color: Colors.amber),
@@ -237,26 +258,28 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         Icon(Icons.star, color: Colors.amber),
                         Icon(Icons.star, color: Colors.amber),
                         Icon(Icons.star, color: Colors.grey),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios))
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.arrow_forward_ios))
                       ],
                     )
                   ],
                 ),
               ),
+
               ///
-              
+
               SizedBox(
                 height: 20,
               ),
               Center(
-                child: app_ele_button("Add to Basket", (){
+                child: app_ele_button("Add to Basket", () {
                   Navigator.pop(context);
                 }),
               ),
               SizedBox(
                 height: 20,
               ),
-          
             ],
           ),
         ),

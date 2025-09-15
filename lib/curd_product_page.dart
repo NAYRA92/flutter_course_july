@@ -86,15 +86,78 @@ class _CurdProductPageState extends State<CurdProductPage> {
                   );
                 }
                 if (snapshot.hasData) {
-                  return ListView.builder(
+                  return ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        color: Colors.black,
+                        thickness: 1,
+                        endIndent: 30,
+                        indent: 30,
+                      );
+                    },
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       var productData = snapshot.data!.docs[index];
                       return ListTile(
                         onTap: () {
-                          
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Product Details"),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.network(
+                                        productData['image'],
+                                        height: 250,
+                                        width: 250,
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text("Name: ${productData['name']}"),
+                                      Text("Price: \$${productData['price']}"),
+                                      Text("Unit: ${productData['unit']}"),
+                                    ],
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text("Close"),
+                                    ),
+                                  ],
+                                );
+                              });
                         },
-                        leading: Image.network(productData['image']),
+                        leading: Container(
+                          height: 70,
+                          width: 70,
+                          decoration: BoxDecoration(
+                            color: greyColor,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(25),
+                              bottomRight: Radius.circular(25),
+                            ),
+                            image: DecorationImage(
+                              image: NetworkImage(productData['image']),
+                              opacity: 0.2,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Center(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.network(
+                                productData['image'],
+                                height: 50,
+                                width: 50,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Image.network(productData['image'], width: 60,),
                         title: Text(productData['name']),
                         subtitle: Text(
                             "\$${productData['price']} - ${productData['unit']}"),

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_course_july/bottom_nav_screens/login_page.dart';
+import 'package:flutter_course_july/home_screen.dart';
 
 import 'bottom_nav_screens/account_page.dart';
 import 'bottom_nav_screens/cart_page.dart';
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
       ),
       
       home: 
-      //ProductDetailsScreen()
-       CurdProductPage()
+       HomeScreen(
+        user_name: "blank",
+      )
     );
   }
 }

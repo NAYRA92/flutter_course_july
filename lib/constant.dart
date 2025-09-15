@@ -63,7 +63,7 @@ Widget app_items_card(String image_url, String item_name, String item_count,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   image: DecorationImage(
-                      image: AssetImage(image_url), fit: BoxFit.cover)),
+                      image: NetworkImage(image_url), fit: BoxFit.cover)),
             )),
         SizedBox(
           height: 20,
