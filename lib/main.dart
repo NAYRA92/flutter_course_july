@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../home_screen_mysql.dart';
+import 'ai_chat_page.dart';
 
 
 // void main() {
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       
       home: 
+      // AiChatPage()
        HomeScreenMysql(
         user_name: "Nayra",
       )

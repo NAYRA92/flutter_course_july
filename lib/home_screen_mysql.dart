@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_course_july/ai_chat_page.dart';
 import 'package:http/http.dart' as http;
 
 import 'constant.dart';
@@ -48,6 +49,32 @@ class _HomeScreenMysqlState extends State<HomeScreenMysql> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          showDialog(
+            context: context, 
+            builder: (context) => AlertDialog(
+              title: Text("Hello, ${widget.user_name}"),
+              content: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: AiChatPage()
+                ),
+              actions: [
+                TextButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  }, 
+                  child: Text("Close"))
+              ],
+            ));
+        },
+        child: Icon(
+          Icons.message,
+          color: Colors.orange,
+        ),
+        tooltip: "AI Assistant",
+      ),
+
         body: Center(
           child: SingleChildScrollView(
             child: Column(

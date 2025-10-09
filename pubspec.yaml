@@ -43,6 +43,7 @@ dependencies:
   change_app_package_name:
   shared_preferences:
   http:
+  google_generative_ai:
 
 dev_dependencies:
   flutter_test:
