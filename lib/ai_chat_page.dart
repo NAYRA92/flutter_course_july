@@ -16,11 +16,11 @@ var ai_model = GenerativeModel(
   systemInstruction: Content.text("Only answer the question if it is related to gerocery products. If not, say 'I am sorry, I can only answer questions related to gerocery products'."));
 
 class _AiChatPageState extends State<AiChatPage> {
-  TextEditingController _inputController = TextEditingController();
+  final TextEditingController _inputController = TextEditingController();
 
   final _modelChat = ai_model.startChat();
   String? _outputResponse;
-  List<String> _outputResponseList = [];
+  final List<String> _outputResponseList = [];
 
   Future<void> _generateChatResponse(
     String msg
@@ -67,8 +67,8 @@ class _AiChatPageState extends State<AiChatPage> {
             itemCount: _outputResponseList.length,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.all(5),
-                margin: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(5),
+                margin: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   color: Colors.amber.shade200,
                   borderRadius: BorderRadius.circular(8),
@@ -89,7 +89,7 @@ class _AiChatPageState extends State<AiChatPage> {
         _generateChatResponse(_inputController.text);
         _inputController.clear();
       },
-      child: Icon(Icons.send),
+      child: const Icon(Icons.send),
     ),
     
     );

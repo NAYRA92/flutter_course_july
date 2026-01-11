@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../home_screen_mysql.dart';
 import 'ai_chat_page.dart';
+import 'training files/search_bar_list.dart';
 
 
 // void main() {
@@ -36,10 +37,11 @@ class MyApp extends StatelessWidget {
       ),
       
       home: 
-      // AiChatPage()
-       HomeScreenMysql(
-        user_name: "Nayra",
-      )
+      // AiChatPage(),
+      SearchBarList(),
+      //  HomeScreenMysql(
+      //   user_name: "Nayra",
+      // )
     );
   }
 }
